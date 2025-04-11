@@ -30,7 +30,7 @@ All commands below are run from the root of the repository.
 ### Run tests remotely on Modal
 
 ```bash
-modal run my_pkg.ci
+modal run -m my_pkg.ci
 ```
 
 On the first execution, the [container image](https://modal.com/docs/guide/custom-container)
