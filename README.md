@@ -1,20 +1,16 @@
 # Run Continuous Integration (CI) Tests on Modal
 
-[This example repo](https://github.com/modal-labs/ci-on-modal)
-is a demonstration of one pattern for running tests on Modal:
-bring your existing package and test suite (here `my_pkg` and `tests`)
-and add a Modal App (`my_pkg.ci`)
-that mounts your tests
-and a Function (`pytest`) runs `pytest`.
+[This example repo](https://github.com/modal-labs/ci-on-modal) is a
+demonstration of one pattern for running tests on Modal: bring your existing
+package and test suite (here `my_pkg` and `tests`) and add a Modal App
+(`my_pkg.ci`) with a Function (`pytest`) that runs `pytest`.
 
 That's as straightforward as
 
 ```python
 # my_pkg/ci.py
-tests = modal.Mount.from_local_dir("path/to/tests", remote_path="/root/tests")
 
-
-@app.function(gpu="any", mounts=[tests])
+@app.function(gpu="any")
 def pytest():
     import subprocess
 
@@ -34,7 +30,7 @@ All commands below are run from the root of the repository.
 ### Run tests remotely on Modal
 
 ```bash
-modal run my_pkg.ci
+modal run -m my_pkg.ci
 ```
 
 On the first execution, the [container image](https://modal.com/docs/guide/custom-container)
