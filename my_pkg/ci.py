@@ -6,6 +6,7 @@ ROOT_PATH = Path(__file__).parent.parent
 
 image = (
     modal.Image.debian_slim()
+    .run_commands(f"pwd && ls -l {ROOT_PATH}")
     .pip_install("pytest")
     .pip_install_from_requirements(ROOT_PATH / "requirements.txt")
     .add_local_dir(ROOT_PATH / "tests", remote_path="/root/tests")
